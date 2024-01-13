@@ -1,9 +1,23 @@
+:root {
+    --bg-primary-color: #00bfff;
+    --bg-img-primary-color: linear-gradient(to bottom, #00bfff, #007fff);
+
+    --bg-secondary-color: #FFD700;
+    --bg-img-secondary-color: linear-gradient(to bottom, #fff000, #ffcc00);
+
+    --bg-success-color: #4CAF50;
+    --bg-img-success-color: linear-gradient(to bottom, var(--bg-success-color), #fff);
+
+    --bg-danger-color: #ff5722;
+    --bg-img-danger-color: linear-gradient(to bottom, #ff5722, #f11636);
+}
+
 .btn {
     align-items: center;
     appearance: none;
-    background-color: #3EB2FD;
-    background-image: linear-gradient(1deg, #4F58FD, #149BF3 99%);
     background-size: calc(100% + 20px) calc(100% + 20px);
+    background-color: var(--bg-primary-color);
+    background-image: var(--bg-img-primary-color);
     border-radius: 100px;
     border-width: 0;
     box-shadow: none;
@@ -13,6 +27,7 @@
     display: inline-flex;
     font-family: CircularStd, sans-serif;
     font-size: 1rem;
+    font-weight: bold;
     height: auto;
     justify-content: center;
     line-height: 1.5;
@@ -37,6 +52,17 @@
     background-position: -20px -20px;
 }
 
-.btn:focus:not(:active) {
-    box-shadow: rgba(40, 170, 255, 0.25) 0 0 0 .125em;
+.btn--secondary {
+    background-color: var(--bg-secondary-color);
+    background-image: var(--bg-img-secondary-color);
+}
+
+.btn--success {
+    background-color: var(--bg-success-color);
+    background-image: var(--bg-img-success-color);
+}
+
+.btn--danger {
+    background-color: var(--bg-danger-color);
+    background-image: var(--bg-img-danger-color);
 }

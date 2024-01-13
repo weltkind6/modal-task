@@ -11,6 +11,7 @@ function App() {
             <Button
                 setIsOpen={setIsOpen}
                 marginTop={20}
+                color="success"
             >Выполнить действие
             </Button>
             <Modal
