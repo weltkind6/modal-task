@@ -1,29 +1,25 @@
 import React, {useState} from 'react';
-import Button from "./components/shared/Button/Button";
 import Modal from "./components/Modal/Modal";
 import './App.css';
+import Button from "./components/shared/Button/Button";
 
 function App() {
     const [isOpen, setIsOpen] = useState(false);
-    const [timerReset, setTimerReset] = useState(false);
     const [isReset, setIsReset] = useState(false);
 
     return (
         <div className="App">
-            <button
-                onClick={() => {
-                    setIsOpen(true);
-                    setTimerReset((prev) => !prev);
-                    setIsReset(true);
-                }}
-                className="pureButton"
+            <Button
+                color="primary"
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+                setIsReset={setIsReset}
             >
                 Выполнить действие
-            </button>
+            </Button>
             <Modal
                 active={isOpen}
                 setActive={setIsOpen}
-                timerReset={timerReset}
                 isReset={isReset}
                 setIsReset={setIsReset}
             >

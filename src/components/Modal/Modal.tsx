@@ -1,16 +1,16 @@
 import React, {useEffect, useState} from "react";
 import styles from './styles.module.css';
+import Button from "../shared/Button/Button";
 
 interface Props {
     active: boolean;
     setActive: React.Dispatch<React.SetStateAction<boolean>>;
     children?: React.ReactNode;
-    timerReset: boolean;
     isReset: boolean;
     setIsReset: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const Modal = ({active, setActive, timerReset, isReset, setIsReset,  children}: Props) => {
+const Modal = ({active, setActive, isReset, setIsReset,  children}: Props) => {
     const [disabledBtn, setDisabledBtn] = useState(true);
     const [timer, setTimer] = useState(5);
     const [isTimerVisible, setIsTimerVisible] = useState(true);
@@ -65,12 +65,15 @@ const Modal = ({active, setActive, timerReset, isReset, setIsReset,  children}: 
                         color="success"
                         disabled={disabledBtn}
                         onClick={acceptHandler}
+                        className={`${styles.button} ${styles.buttonSuccess}`}
                     >
-                        Принять
-                        <div>{isTimerVisible && <span>({timer})</span>}</div>
+                        <div className={styles.text}>
+                            <span>Подтвердить</span>
+                            <div>{isTimerVisible && <span>({timer})</span>}</div>
+                        </div>
                     </button>
                     <button
-                        color="danger"
+                        className={`${styles.button} ${styles.buttonDanger}`}
                         onClick={cancelHandler}
                     >
                         Отмена
