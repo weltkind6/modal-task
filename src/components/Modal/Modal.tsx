@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import styles from './styles.module.css';
 import Button from "../shared/Button/Button";
 
@@ -9,6 +9,29 @@ interface Props {
 }
 
 const Modal = ({active, setActive, children}: Props) => {
+    const [disabledBtn, setDisabledBtn] = useState(true);
+    const [timer, setTimer] = useState(5);
+    const [isTimerVisible, setIsTimerVisible] = useState(true);
+
+    // Timer
+    useEffect(() => {
+       const intervalId = setInterval(() => {
+          if (timer > 0) {
+              setTimer(timer - 1);
+          }
+          else {
+              clearInterval(intervalId);
+              setIsTimerVisible(false);
+              setDisabledBtn(false);
+          }
+       }, 1000)
+        return () => clearInterval(intervalId);
+    }, [timer])
+
+    const cancelHandler = () => {
+        setActive(false);
+    }
+
     return (
         <div
             className={`${styles.modal} ${active ? styles.active : ''}`}
@@ -21,12 +44,19 @@ const Modal = ({active, setActive, children}: Props) => {
                 {children}
 
                 <div className={styles.btnBlock}>
-                    <Button>
+                    <button
+                        color="success"
+                        disabled={disabledBtn}
+                    >
                         Accept
-                    </Button>
-                    <Button>
+                        <div>{isTimerVisible && <span>({timer})</span>}</div>
+                    </button>
+                    <button
+                        color="danger"
+                        onClick={cancelHandler}
+                    >
                         Cancel
-                    </Button>
+                    </button>
                 </div>
             </div>
         </div>

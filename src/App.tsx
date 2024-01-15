@@ -5,13 +5,14 @@ import './App.css';
 
 function App() {
     const [isOpen, setIsOpen] = useState(false);
+    const [timerReset, setTimerReset] = useState(false);
 
     return (
         <div className="App">
             <Button
                 setIsOpen={setIsOpen}
                 marginTop={20}
-                color="success"
+                color="primary"
             >Выполнить действие
             </Button>
             <Modal

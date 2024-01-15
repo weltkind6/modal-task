@@ -1,3 +1,17 @@
+:root {
+    --bg-primary-color: #00bfff;
+    --bg-img-primary-color: linear-gradient(to bottom, #00bfff, #007fff);
+
+    --bg-secondary-color: #FFD700;
+    --bg-img-secondary-color: linear-gradient(to bottom, #fff000, #ffcc00);
+
+    --bg-success-color: #4CAF50;
+    --bg-img-success-color: linear-gradient(to bottom, var(--bg-success-color), #fff);
+
+    --bg-danger-color: #ff5722;
+    --bg-img-danger-color: linear-gradient(to bottom, #ff5722, #fff);
+}
+
 .App {
     text-align: center;
 }
