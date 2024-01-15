@@ -6,22 +6,29 @@ import './App.css';
 function App() {
     const [isOpen, setIsOpen] = useState(false);
     const [timerReset, setTimerReset] = useState(false);
+    const [isReset, setIsReset] = useState(false);
 
     return (
         <div className="App">
-            <Button
-                setIsOpen={setIsOpen}
-                marginTop={20}
-                color="primary"
-            >Выполнить действие
-            </Button>
+            <button
+                onClick={() => {
+                    setIsOpen(true);
+                    setTimerReset((prev) => !prev);
+                    setIsReset(true);
+                }}
+                className="pureButton"
+            >
+                Выполнить действие
+            </button>
             <Modal
                 active={isOpen}
                 setActive={setIsOpen}
+                timerReset={timerReset}
+                isReset={isReset}
+                setIsReset={setIsReset}
             >
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate ex expedita magni nulla quas! Culpa
-                cum exercitationem iusto nam odio tempora, temporibus? Accusamus, aut dignissimos eveniet possimus rerum
-                velit voluptatem!
+
+                <h3>Ознакомился с правилами сервиса и принимаю их</h3>
             </Modal>
         </div>
     );

@@ -1,19 +1,20 @@
 import React, {useEffect, useState} from "react";
 import styles from './styles.module.css';
-import Button from "../shared/Button/Button";
 
 interface Props {
     active: boolean;
     setActive: React.Dispatch<React.SetStateAction<boolean>>;
     children?: React.ReactNode;
+    timerReset: boolean;
+    isReset: boolean;
+    setIsReset: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const Modal = ({active, setActive, children}: Props) => {
+const Modal = ({active, setActive, timerReset, isReset, setIsReset,  children}: Props) => {
     const [disabledBtn, setDisabledBtn] = useState(true);
     const [timer, setTimer] = useState(5);
     const [isTimerVisible, setIsTimerVisible] = useState(true);
 
-    // Timer
     useEffect(() => {
        const intervalId = setInterval(() => {
           if (timer > 0) {
@@ -28,9 +29,25 @@ const Modal = ({active, setActive, children}: Props) => {
         return () => clearInterval(intervalId);
     }, [timer])
 
+    useEffect(() => {
+        if (isReset) {
+            setTimer(5);
+            setIsTimerVisible(true);
+            setIsReset(false);
+        }
+    }, [isReset, setIsReset]);
+
     const cancelHandler = () => {
         setActive(false);
     }
+
+    const acceptHandler = () => {
+        setActive(false);
+        setDisabledBtn(true);
+        setTimeout(() => {
+            alert("Действие выполнено");
+        }, 1000);
+    };
 
     return (
         <div
@@ -47,15 +64,16 @@ const Modal = ({active, setActive, children}: Props) => {
                     <button
                         color="success"
                         disabled={disabledBtn}
+                        onClick={acceptHandler}
                     >
-                        Accept
+                        Принять
                         <div>{isTimerVisible && <span>({timer})</span>}</div>
                     </button>
                     <button
                         color="danger"
                         onClick={cancelHandler}
                     >
-                        Cancel
+                        Отмена
                     </button>
                 </div>
             </div>
